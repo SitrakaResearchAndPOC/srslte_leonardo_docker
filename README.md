@@ -5,10 +5,10 @@ apt update
 ```
 Installing CPUPOWER
 ```
-apt install linux-tools-common
+apt-get install linux-tools-common
 ```
 ```
-apt install linux-tools-generic
+apt-get install linux-tools-generic
 ```
 (installing also linux-tools-<number-proposed>-tools-generic by taping command cpupower)
 ```
@@ -50,7 +50,7 @@ apt-get install iptables
 apt update
 ```
 ```
-apt-get install build-essential cmake libfftw3-dev libmbedtls-dev libboost-program-options-dev libconfig++-dev libsctp-dev  
+apt install build-essential cmake libfftw3-dev libmbedtls-dev libboost-program-options-dev libconfig++-dev libsctp-dev  
 ```
 ```
 apt install python3-pip
@@ -68,7 +68,7 @@ apt install git cmake g++ libboost-all-dev libgmp-dev swig python3-numpy python3
 apt install libtinfo5 libncurses5
 ```
 ```
-apt-get  install curl wget zip net-tools
+apt  install curl wget zip net-tools
 ```
 ## Installing UHD
 ```
