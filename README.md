@@ -1,5 +1,5 @@
 # srslte_leonardo_docker
-# Installing on host machine cpupower
+# INSTALLING CPU POWER
 ```
 apt update
 ```
@@ -16,7 +16,8 @@ cpupower frequency-set -g performance
 ```
 
 
-# Installing with config and first test srslte over usrp  after over bladerf
+# INSTALLING WITH USRP
+## installing docker and os ubuntu 20.04
 ```
 apt-get install docker.io
 ```
@@ -29,5 +30,20 @@ docker images
 or
 ```
 docker image ps
+```
+## run docker
+```
+docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb --net=host ubuntu:20.04 /bin/bash
+```
+```
+apt-get install iptables
+```
+## installing srslte and sim programmer over ubuntu
+
+```
+wget https://raw.githubusercontent.com/SitrakaResearchAndPOC/srslte_leonardo/main/srsepc_if_masq.sh
+```
+```
+chmod +x srsepc_if_masq.sh
 ```
 
