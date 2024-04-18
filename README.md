@@ -10,7 +10,7 @@ apt install linux-tools-common
 ```
 apt install linux-tools-generic
 ```
-(installing alos linux-tools-<number-proposed>-tools-generic)
+(installing also linux-tools-<number-proposed>-tools-generic by taping command cpupower)
 ```
 cpupower frequency-set -g performance 
 ```
