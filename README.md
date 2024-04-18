@@ -184,7 +184,7 @@ mkdir -rf /root/.config/srsran
 ```
 rm -rf /root/.config/srsran/*
 ```
-* For USRP : config
+For USRP : config
 ```
 wget https://raw.githubusercontent.com/SitrakaResearchAndPOC/srslte_leonardo/main/srsran_config.zip
 ```
