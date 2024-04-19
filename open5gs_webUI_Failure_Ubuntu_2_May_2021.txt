@@ -1,0 +1,155 @@
+login as: open5gs2
+open5gs2@10.3.35.121's password:
+Welcome to Ubuntu 20.04.2 LTS (GNU/Linux 5.8.0-50-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+84 updates can be installed immediately.
+3 of these updates are security updates.
+To see these additional updates run: apt list --upgradable
+
+Your Hardware Enablement Stack (HWE) is supported until April 2025.
+open5gs2@open5gs2-PowerEdge-R220:~$
+open5gs2@open5gs2-PowerEdge-R220:~$ ls -l
+total 36
+drwxr-xr-x 2 open5gs2 open5gs2 4096 Apr 29 20:16 Desktop
+drwxr-xr-x 2 open5gs2 open5gs2 4096 May  2 14:32 Documents
+drwxr-xr-x 2 open5gs2 open5gs2 4096 Apr 29 20:16 Downloads
+drwxr-xr-x 2 open5gs2 open5gs2 4096 Apr 29 20:16 Music
+drwxr-xr-x 3 root     root     4096 May  2 13:40 node_modules
+drwxr-xr-x 2 open5gs2 open5gs2 4096 Apr 29 20:16 Pictures
+drwxr-xr-x 2 open5gs2 open5gs2 4096 Apr 29 20:16 Public
+drwxr-xr-x 2 open5gs2 open5gs2 4096 Apr 29 20:16 Templates
+drwxr-xr-x 2 open5gs2 open5gs2 4096 Apr 29 20:16 Videos
+open5gs2@open5gs2-PowerEdge-R220:~$ cd Documents/
+open5gs2@open5gs2-PowerEdge-R220:~/Documents$ ls -l
+total 8
+-rw-rw-r-- 1 open5gs2 open5gs2 4917 May  2 14:32 webui1.txt
+open5gs2@open5gs2-PowerEdge-R220:~/Documents$ cat webui1.txt
+open5gs2@open5gs2-PowerEdge-R220:~$ curl -sL https://open5gs.org/open5gs/assets/webui/install | sudo -E bash -
+
+## Populating apt-get cache...
+
++ apt-get update
+Hit:1 http://ppa.launchpad.net/open5gs/latest/ubuntu focal InRelease
+Hit:2 https://deb.nodesource.com/node_12.x focal InRelease
+Get:3 http://security.ubuntu.com/ubuntu focal-security InRelease [109 kB]
+Hit:4 http://il.archive.ubuntu.com/ubuntu focal InRelease
+Hit:5 http://il.archive.ubuntu.com/ubuntu focal-updates InRelease
+Hit:6 http://il.archive.ubuntu.com/ubuntu focal-backports InRelease
+Fetched 109 kB in 12s (9,435 B/s)
+Reading package lists... Done
+
+## Download the Open5GS Source Code (v2.2.6)...
+
++ curl -sLf 'https://github.com/open5gs/open5gs/archive/v2.2.6.tar.gz' | tar zxf -
+
+## Build the Open5GS WebUI...
+
++ cd ./open5gs-2.2.6/webui && npm ci --no-optional && npm run build
+
+> uglifyjs-webpack-plugin@0.4.6 postinstall /home/open5gs2/open5gs-2.2.6/webui/node_modules/uglifyjs-webpack-plugin
+> node lib/post_install.js
+
+added 749 packages in 4.035s
+
+> open5gs@2.2.6 build /home/open5gs2/open5gs-2.2.6/webui
+> next build
+
+> Using external babel configuration
+> Location: "/home/open5gs2/open5gs-2.2.6/webui/.babelrc"
+
+## Install the Open5GS WebUI...
+
++ mv ./open5gs-2.2.6/webui /usr/lib/node_modules/open5gs
+mv: cannot move './open5gs-2.2.6/webui' to '/usr/lib/node_modules/open5gs/webui': Directory not empty
+Error executing command, exiting
+open5gs2@open5gs2-PowerEdge-R220:~$
+
+
+
+
+
+
+
+
+
+
+
+open5gs2@open5gs2-PowerEdge-R220:~$ curl -sL https://open5gs.org/open5gs/assets/webui/install | sudo -E bash -
+
+## Populating apt-get cache...
+
++ apt-get update
+Hit:1 http://il.archive.ubuntu.com/ubuntu focal InRelease
+Hit:2 http://il.archive.ubuntu.com/ubuntu focal-updates InRelease
+Hit:3 http://il.archive.ubuntu.com/ubuntu focal-backports InRelease
+Get:4 http://security.ubuntu.com/ubuntu focal-security InRelease [109 kB]
+Hit:5 http://ppa.launchpad.net/open5gs/latest/ubuntu focal InRelease
+Hit:6 https://deb.nodesource.com/node_12.x focal InRelease
+Fetched 109 kB in 1s (148 kB/s)
+Reading package lists... Done
+
+## Download the Open5GS Source Code (v2.2.6)...
+
++ curl -sLf 'https://github.com/open5gs/open5gs/archive/v2.2.6.tar.gz' | tar zxf -
+
+## Build the Open5GS WebUI...
+
++ cd ./open5gs-2.2.6/webui && npm ci --no-optional && npm run build
+npm WARN prepare removing existing node_modules/ before installation
+
+> uglifyjs-webpack-plugin@0.4.6 postinstall /home/open5gs2/open5gs-2.2.6/webui/node_modules/uglifyjs-webpack-plugin
+> node lib/post_install.js
+
+added 749 packages in 4.557s
+
+> open5gs@2.2.6 build /home/open5gs2/open5gs-2.2.6/webui
+> next build
+
+> Using external babel configuration
+> Location: "/home/open5gs2/open5gs-2.2.6/webui/.babelrc"
+
+## Install the Open5GS WebUI...
+
++ mv ./open5gs-2.2.6/webui /usr/lib/node_modules/open5gs
++ chown -R open5gs:open5gs /usr/lib/node_modules/open5gs
++ cat << EOF > /lib/systemd/system/open5gs-webui.service
+[Unit]
+Description=Open5GS WebUI
+Wants=mongodb.service mongod.service
+
+[Service]
+Type=simple
+
+WorkingDirectory=/usr/lib/node_modules/open5gs
+Environment=NODE_ENV=production
+ExecStart=/usr/bin/node server/index.js
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target
+EOF
++ systemctl daemon-reload
++ systemctl enable open5gs-webui
++ deb-systemd-invoke start open5gs-webui
++ rm -rf ./open5gs-2.2.6
+open5gs2@open5gs2-PowerEdge-R220:~$
+open5gs2@open5gs2-PowerEdge-R220:~$
+open5gs2@open5gs2-PowerEdge-R220:~$ sudo systemctl status open5gs-webui
+● open5gs-webui.service - Open5GS WebUI
+     Loaded: loaded (/lib/systemd/system/open5gs-webui.service; enabled; vendor preset: enabled)
+     Active: activating (auto-restart) (Result: exit-code) since Sun 2021-05-02 14:24:49 IDT; 1s ago
+    Process: 14645 ExecStart=/usr/bin/node server/index.js (code=exited, status=1/FAILURE)
+   Main PID: 14645 (code=exited, status=1/FAILURE)
+open5gs2@open5gs2-PowerEdge-R220:~$ sudo systemctl restart open5gs-webui
+open5gs2@open5gs2-PowerEdge-R220:~$ sudo systemctl status open5gs-webui
+● open5gs-webui.service - Open5GS WebUI
+     Loaded: loaded (/lib/systemd/system/open5gs-webui.service; enabled; vendor preset: enabled)
+     Active: failed (Result: exit-code) since Sun 2021-05-02 14:25:07 IDT; 1ms ago
+    Process: 14708 ExecStart=/usr/bin/node server/index.js (code=exited, status=1/FAILURE)
+   Main PID: 14708 (code=exited, status=1/FAILURE)
+open5gs2@open5gs2-PowerEdge-R220:~/Documents$

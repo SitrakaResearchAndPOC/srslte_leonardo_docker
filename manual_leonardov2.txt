@@ -1,0 +1,95 @@
+
+apt update
+Installing CPUPOWER
+apt install linux-tools-common
+apt install linux-tools-generic
+(installing alos linux-tools-<number-proposed>-tools-generic)
+
+cpupower frequency-set -g performance 
+
+apt-get install docker.io
+
+docker image pull ubuntu:20.04
+docker images
+
+ docker run -it  -v /tmp/.X11-unix:/tmp/.X11-unix:ro -v /run/user/1000/.mutter-Xwaylandauth.5OKTL2:/home/user/.Xauthority:ro -e DISPLAY --name leonardo ubuntu:20.04
+
+lsof -U | grep X1
+echo $XAUTHORITY
+
+change with the name of user linux
+/media/testnuradio/MATHWORKS_R2018B
+/media/testnuradio/MATHWORKS_R2018B1
+
+xhost +local:
+docker run -it  -v /tmp/.X11-unix:/tmp/.X11-unix:ro -v $XAUTHORITY:/home/user/.Xauthority:ro -v /media/testnuradio/HDD1_Doc/HDD_LENOVO_GAMING/SITRAKA_DOC_OLD:/home/user -e DISPLAY --name leonardo ubuntu:20.04
+
+docker run -it  -v /tmp/.X11-unix:/tmp/.X11-unix:ro -v $XAUTHORITY:/home/user/.Xauthority:ro -v  /media/testnuradio/MATHWORKS_R2018B1/:/home/user -e DISPLAY --name leonardo ubuntu:20.04
+
+
+docker run -it  -v /tmp/.X11-unix:/tmp/.X11-unix:ro -v $XAUTHORITY:/home/user/.Xauthority:ro -v  /media/testnuradio/MATHWORKS_R2018B:/home/MATLAB_DVD1:rw -v  /media/testnuradio/MATHWORKS_R2018B1:/home/MATLAB_DVD2:rw -e DISPLAY --name leonardo ubuntu:20.04
+
+docker run -it  -v /tmp/.X11-unix:/tmp/.X11-unix:ro -v $XAUTHORITY:/home/user/.Xauthority:ro -v /media/testnuradio/HDD1_Doc/HDD_LENOVO_GAMING/SITRAKA_DOC_OLD:/home/MATLAB_DVD:rw -e DISPLAY --name leonardo ubuntu:20.04
+
+Mety
+docker rm leonardo
+docker run -it  -v /tmp/.X11-unix:/tmp/.X11-unix:ro -v $XAUTHORITY:/home/user/.Xauthority:ro -v  /media/testnuradio/MATHWORKS_R2018B:/home/MATLAB_DVD1:rw -v  /media/testnuradio/MATHWORKS_R2018B1:/home/MATLAB_DVD2:rw -e DISPLAY --name leonardo ubuntu:20.04
+
+cd /home
+mkdir all_matlab
+cp -rf MATLAB_DVD1/* all_matlab/
+cp -rf MATLAB_DVD2/* all_matlab/
+
+
+Before installation
+docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb --net=host ubuntu:20.04 /bin/bash
+
+make installation, open new terminal by ctrl+shift+t
+
+and installing : 
+apt-get install iptables
+
+
+wget https://raw.githubusercontent.com/SitrakaResearchAndPOC/srslte_leonardo/main/srsepc_if_masq.sh
+chmod +x srsepc_if_masq.sh
+
+Test : 
+./srsepc_if_masq.sh
+bash srsepc_if_masq.sh
+
+docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb --net=host leonardousrp  bash srsepc_if_masq.sh
+
+
+
+
+
+docker ps -a
+
+find the id 
+
+docker commit  id leonardo_usrp
+
+For running : 
+docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb --net=host leonardousrp  /bin/bash
+
+docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb --net=host leonardousrp /bin/bash
+
+docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb --net=host leonardousrp uhd_usrp_probe
+
+docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb --net=host leonardousrp srsepc
+
+docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb --net=host leonardousrp srsenb
+
+docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb --net=host leonardousrp ifconfig
+
+srsepc_if_masq.sh 
+
+
+ 
+
+For saving 
+docker save leonardousrp > leonardousrp.tar.gz
+
+
+For reusing : 
+docker load < leonardousrp.tar.gz
