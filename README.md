@@ -497,6 +497,14 @@ docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb --net=host  leonardobla
 ```
 docker save <  leonardobladerf.tar.gz
 ```
+RQ : Error time burst </br>
+* The USB doesn't detect USB3.0 </br>
+* The processing is no enough </br>
+* The configuration is bad indeed about device argument and references clock of equipement </br>
 
+# Link
+* [uhd](https://www.linkedin.com/pulse/installation-uhd-40-gnu-radio-38-rfnoc-ubuntu-2004-murthy-s)
+* [leonardo](https://blog.leonardotamiano.xyz/tech/build-your-own-4g-network/)
+* [hackmd](https://hackmd.io/@4G7xxurNQEGA3Apb11YQJg/H1GJsHt9o)
 
 
