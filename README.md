@@ -98,6 +98,9 @@ ldconfig
 ```
 cd ../../..
 ```
+```
+uhd_images_downloader
+```
 
 ## Installing opencells simcard
 ```
