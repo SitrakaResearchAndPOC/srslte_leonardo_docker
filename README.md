@@ -229,19 +229,24 @@ docker commit  <id> leonardousrp
 docker save leonardousrp > leonardousrp.tar.gz
 ```
 # launching SRSLTE
-On terminal 1
+close all terminal and open new fresh one
+* On terminal 1
+running cpupower
+```
+cpupower frequency-set -g performance 
+```
 ```
 docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb --net=host leonardousrp uhd_usrp_probe
 ```
 ```
 docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb --net=host leonardousrp srsepc
 ```
-On terminal 2
+* On terminal 2
 (tape ctrl+shift+T before)
 ```
 docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb --net=host leonardousrp srsenb
 ```
-On terminal 3 
+* On terminal 3 
 ```
 docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb --net=host leonardousrp ifconfig
 ```
@@ -452,6 +457,7 @@ or test
 ```
 bash srsepc_if_masq.sh
 ```
+
 ## saving image (command on new terminal not on docker)
 Tape ctrl+shit+T
 ```
@@ -468,7 +474,13 @@ docker commit  <id> leonardobladerf
 docker save leonardobladerf > leonardobladerf.tar.gz
 ```
 # launching SRSLTE
-On terminal 1
+close all terminal and open new fresh one 
+* On terminal 1
+Use cpupower mode 
+```
+cpupower frequency-set -g performance 
+```
+running
 ```
 docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb --net=host leonardobladerf  bladeRF-cli -i
 ```
@@ -480,12 +492,12 @@ And Tape exit or ctrl-D
 ```
 docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb --net=host  leonardobladerf srsepc
 ```
-On terminal 2
+* On terminal 2
 (tape ctrl+shift+T before)
 ```
 docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb --net=host  leonardobladerf srsenb
 ```
-On terminal 3 
+* On terminal 3 
 ```
 docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb --net=host  leonardobladerf ifconfig
 ```
@@ -497,6 +509,7 @@ docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb --net=host  leonardobla
 ```
 docker save <  leonardobladerf.tar.gz
 ```
+
 RQ : Error time burst </br>
 * The USB doesn't detect USB3.0 </br>
 * The processing is no enough </br>
@@ -506,5 +519,12 @@ RQ : Error time burst </br>
 * [uhd](https://www.linkedin.com/pulse/installation-uhd-40-gnu-radio-38-rfnoc-ubuntu-2004-murthy-s)
 * [leonardo](https://blog.leonardotamiano.xyz/tech/build-your-own-4g-network/)
 * [hackmd](https://hackmd.io/@4G7xxurNQEGA3Apb11YQJg/H1GJsHt9o)
-
+* [cyberloginit](https://cyberloginit.com/2018/05/03/build-a-lte-network-with-srslte-and-program-your-own-usim-card.html)
+* [ilabt](https://doc.ilabt.imec.be/ilabt/wilab/tutorials/usrp_b200.html)
+* [tenettech](https://blogspot.tenettech.net/2019/10/17/validation-of-4g-lte-using-software-defined-radio/)
+* [zhixun-wireless](http://zhixun-wireless.top/install-and-configure-srslte-enb-epc-on-ubuntu)
+* [nickvsnetworking](https://nickvsnetworking.com/srslte-install-for-bladerf-limesdr-on-debian-ubuntu/)
+* [programmersought](https://programmersought.com/article/84496400694/)
+* [matlab_hash_used](https://github.com/paulchen2713/SHA3)
+* [matlab_hash_ref](https://www.mathworks.com/matlabcentral/fileexchange/31795-sha-algorithms-160-224-256-384-512)	
 
