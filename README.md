@@ -525,7 +525,8 @@ RQ : Error time burst </br>
 * [zhixun-wireless](http://zhixun-wireless.top/install-and-configure-srslte-enb-epc-on-ubuntu)
 * [nickvsnetworking](https://nickvsnetworking.com/srslte-install-for-bladerf-limesdr-on-debian-ubuntu/)
 * [programmersought](https://programmersought.com/article/84496400694/)
-* [radioactive](https://band.radio/srsLTE)  
+* [radioactive](https://band.radio/srsLTE)
+* [adamtosher](https://adam-toscher.medium.com/how-to-create-an-evil-lte-twin-34b0a9ce193b)
 * [matlab_hash_used](https://github.com/paulchen2713/SHA3)
 * [matlab_hash_ref](https://www.mathworks.com/matlabcentral/fileexchange/31795-sha-algorithms-160-224-256-384-512)	
 
