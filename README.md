@@ -21,6 +21,10 @@ apt update
 ```
 apt-get install net-tools
 ```
+```
+apt install nano wireshark
+```
+
 
 
 # INSTALLING WITH USRP
@@ -43,7 +47,10 @@ docker image ps
 docker rm leonardousrp
 ```
 ```
-docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb --net=host --name leonardousrp ubuntu:20.04 /bin/bash
+docker run -itd --privileged -v /dev/bus/usb:/dev/bus/usb -v /tmp/.X11-unix:/tmp/.X11-unix:ro -v $XAUTHORITY:/home/user/.Xauthority:ro --net=host --env="DISPLAY=$DISPLAY" --env="LC_ALL=C.UTF-8" --env="LANG=C.UTF-8"  --name leonardousrp ubuntu:20.04 
+```
+```
+docker restart leonardousrp
 ```
 ```
 apt-get install iptables
@@ -197,7 +204,11 @@ unzip srsran_config.zip
 ```
 cp srsran/* /root/.config/srsran
 ```
-
+```
+nano /root/.config/srsran/epc.conf
+```
+Change [pcap] enable by true
+ 
 ## Concifugring srsepc_if_masq
 ```
 wget https://raw.githubusercontent.com/SitrakaResearchAndPOC/srslte_leonardo/main/srsepc_if_masq.sh
@@ -213,6 +224,7 @@ or test
 ```
 bash srsepc_if_masq.sh
 ```
+
 ## saving image (command on new terminal not on docker)
 Tape ctrl+shit+T
 ```
@@ -236,39 +248,49 @@ running cpupower
 cpupower frequency-set -g performance 
 ```
 ```
-docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb --net=host leonardousrp uhd_usrp_probe
-```
-```
-docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb --net=host leonardousrp srsepc
+docker exec -ti leonardousrp srsepc
 ```
 * On terminal 2
 (tape ctrl+shift+T before)
 ```
-docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb --net=host leonardousrp srsenb
+cpupower frequency-set -g performance 
 ```
-* On terminal 3 
 ```
-docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb --net=host leonardousrp ifconfig
+docker exec -ti leonardousrp uhd_usrp_probe
 ```
-Get the interface having internet
 ```
-docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb --net=host leonardousrp  bash srsepc_if_masq.sh <internet>
+docker exec -ti leonardousrp srsenb
 ```
+* On terminal 3
+(tape ctrl+shift+T before)
+```
+cpupower frequency-set -g performance 
+```
+```
+docker exec -ti leonardousrp ifconfig
+```
+Get the interface having internet as <if_internet>
+```
+docker exec -ti leonardousrp  bash srsepc_if_masq.sh <internet>
+```
+```
+docker exec -ti leonardousrp ufw disable # don't wory if there is not ufw on your system
+```
+```
+docker exec -ti leonardousrp sysctl -w net.ipv4.ip_forward=1
+```
+```
+xhost + 
+```
+```
+docker exec -ti leonardousrp wireshark
+```
+
+
 # loading .tar.gz for others machine
 ```
-docker save < leonardousrp.tar.gz
+docker save > leonardousrp.tar.gz
 ```
-
-
-
-
-
-
-
-
-
-
-
 
 
 # INSTALLING WITH BLADERF
@@ -291,10 +313,17 @@ docker image ps
 docker rm leonardobladerf
 ```
 ```
-docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb --net=host --name leonardobladerf ubuntu:20.04 /bin/bash
+docker run -itd --privileged -v /dev/bus/usb:/dev/bus/usb -v /tmp/.X11-unix:/tmp/.X11-unix:ro -v $XAUTHORITY:/home/user/.Xauthority:ro --net=host --env="DISPLAY=$DISPLAY" --env="LC_ALL=C.UTF-8" --env="LANG=C.UTF-8"  --name leonardobladerf ubuntu:20.04 
 ```
 ```
-apt-get install iptables
+docker restart leonardobladerf
+```
+```
+apt install nano wireshark
+```
+
+```
+apt install iptables
 ```
 ## installing srslte and sim programmer over ubuntu
 ```
@@ -441,6 +470,7 @@ unzip srsran_config_bladerf.zip
 ```
 cp srsran/* /root/.config/srsran
 ```
+Change [pcap] enable by true
 
 ## Concifugring srsepc_if_masq
 ```
@@ -456,6 +486,13 @@ Test
 or test
 ```
 bash srsepc_if_masq.sh
+```
+## Getting firmeware for flashing bladerf
+```
+wget https://www.nuand.com/fpga/hostedxA4-latest.rbf
+```
+```
+bladeRF-cli -l hostedxA4-latest.rbf
 ```
 
 ## saving image (command on new terminal not on docker)
@@ -482,7 +519,7 @@ cpupower frequency-set -g performance
 ```
 running
 ```
-docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb --net=host leonardobladerf  bladeRF-cli -i
+docker exec -ti leonardobladerf  bladeRF-cli -i
 ```
 Tape info 
 ```
@@ -490,24 +527,51 @@ info
 ```
 And Tape exit or ctrl-D
 ```
-docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb --net=host  leonardobladerf srsepc
+docker exec -ti  leonardobladerf srsepc
 ```
 * On terminal 2
 (tape ctrl+shift+T before)
 ```
-docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb --net=host  leonardobladerf srsenb
+cpupower frequency-set -g performance 
 ```
-* On terminal 3 
 ```
-docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb --net=host  leonardobladerf ifconfig
+docker exec -ti leonardobladerf bladeRF-cli -p
 ```
-Get the interface having internet
 ```
-docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb --net=host  leonardobladerf  bash srsepc_if_masq.sh <internet>
+docker exec -ti leonardobladerf srsenb
 ```
+If not load, please reload firemware on bladerf : 
+```
+docker exec -ti leonardobladerf bladeRF-cli -l hostedxA4-latest.rbf
+```
+* On terminal 3
+(tape ctrl+shift+T before) 
+```
+sudo cpupower frequency-set -g performance
+```
+```
+docker exec -ti leonardobladerf ifconfig
+```
+Get the interface having internet as <if_internet>
+```
+docker exec -ti leonardobladerf  bash srsepc_if_masq.sh <if_internet>
+```
+```
+docker exec -ti leonardobladerf ufw disable # don't wory if there is not ufw on your system
+```
+```
+docker exec -ti leonardobladerf sysctl -w net.ipv4.ip_forward=1
+```
+```
+xhost + 
+```
+docker exec -ti leonardobladerf wireshark
+```
+
+
 # loading .tar.gz for others machine
 ```
-docker save <  leonardobladerf.tar.gz
+docker save >  leonardobladerf.tar.gz
 ```
 
 RQ : Error time burst </br>
