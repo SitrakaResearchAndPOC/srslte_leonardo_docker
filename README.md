@@ -48,8 +48,9 @@ docker run -itd --privileged -v /dev/bus/usb:/dev/bus/usb -v /tmp/.X11-unix:/tmp
 docker restart leonardousrp
 ```
 ## installing srslte and sim programmer over ubuntu
+```
 docker exec -ti leonardousrp bash
-
+```
 ```
 apt update
 ```
