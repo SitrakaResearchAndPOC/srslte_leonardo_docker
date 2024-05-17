@@ -19,7 +19,7 @@ cpupower frequency-set -g performance
 apt update
 ```
 ```
-apt-get install net-tools
+apt install net-tools
 ```
 ```
 apt install nano wireshark
@@ -30,7 +30,7 @@ apt install nano wireshark
 # INSTALLING WITH USRP
 ## installing docker and os ubuntu 20.04
 ```
-apt-get install docker.io
+apt install docker.io
 ```
 ```
 docker image pull ubuntu:20.04
