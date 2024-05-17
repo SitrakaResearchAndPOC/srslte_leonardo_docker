@@ -276,13 +276,8 @@ docker exec -ti leonardousrp wireshark
 ```
 
 
-# loading .tar.gz for others machine
-```
-docker save > leonardousrp.tar.gz
-```
-
 ## saving image (command on new terminal not on docker)
-Tape ctrl+shit+T
+(Tape ctrl+shit+T)
 ```
 sudo su
 ```
@@ -295,6 +290,58 @@ docker commit  <id> leonardousrp
 ```
 ```
 docker save leonardousrp > leonardousrp.tar.gz
+```
+## LOAD AND LAUNCH LEONARDO USRP 
+```
+docker load leonardousrp < leonardousrp.tar.gz
+```
+```
+docker run -itd --privileged -v /dev/bus/usb:/dev/bus/usb -v /tmp/.X11-unix:/tmp/.X11-unix:ro -v $XAUTHORITY:/home/user/.Xauthority:ro --net=host --env="DISPLAY=$DISPLAY" --env="LC_ALL=C.UTF-8" --env="LANG=C.UTF-8"  --name leonardousrp leonardousrp 
+```
+```
+docker restart leonardousrp
+```
+* Terminal 1
+```
+cpupower frequency-set -g performance
+```
+```
+docker exec -ti leonardousrp srsepc
+```
+* Terminal 2
+(Tape ctrl+shift+T)
+```
+sudo cpupower frequency-set -g performance
+```
+```
+docker exec -ti leonardousrp uhd_usrp_probe
+```
+```
+docker exec -ti leonardousrp srsenb
+```
+* Terminal 3
+(Tape ctrl+shift+T)
+```
+sudo cpupower frequency-set -g performance
+```
+```
+docker exec -ti leonardousrp ifconfig
+```
+finding internet interface named <if_internet>
+```
+docker exec -ti leonardousrp  bash srsepc_if_masq.sh <if_internet>
+```
+```
+docker exec -ti leonardousrp ufw disable # don't wory if there is not ufw on your system
+```
+```
+docker exec -ti leonardousrp sysctl -w net.ipv4.ip_forward=1
+```
+```
+xhost + 
+```
+```
+docker exec -ti leonardousrp wireshark
 ```
 
 
