@@ -182,7 +182,7 @@ cd uicc-v3.2
 Please replace xxxxxxxx by 0c010955 </br>
 RQ : More information about parmeters of program_uicc please check this [github](https://github.com/SitrakaResearchAndPOC/fork_program_uicc) and [youtube](https://www.youtube.com/watch?v=nfTzATOZd_s)
 ```
-sudo ./program_uicc --adm xxxxxxxx --imsi 208920100001101 --isdn 00000001 --acc 0001 --key 6874736969202073796d4b2079650a73 --opc 504f20634f6320504f50206363500a4f -spn "OpenCells01" --authenticate 
+./program_uicc --adm xxxxxxxx --imsi 208920100001101 --isdn 00000001 --acc 0001 --key 6874736969202073796d4b2079650a73 --opc 504f20634f6320504f50206363500a4f -spn "OpenCells01" --authenticate 
 ```
 Configure the apn of phone as : OpenCells01
 ## Creating the configuration
@@ -311,7 +311,7 @@ docker exec -ti leonardousrp srsepc
 * Terminal 2
 (Tape ctrl+shift+T)
 ```
-sudo cpupower frequency-set -g performance
+cpupower frequency-set -g performance
 ```
 ```
 docker exec -ti leonardousrp uhd_usrp_probe
@@ -322,7 +322,7 @@ docker exec -ti leonardousrp srsenb
 * Terminal 3
 (Tape ctrl+shift+T)
 ```
-sudo cpupower frequency-set -g performance
+cpupower frequency-set -g performance
 ```
 ```
 docker exec -ti leonardousrp ifconfig
@@ -421,13 +421,13 @@ cd build
 cmake ../
 ```
 ```
-make
+make -j$(nproc --ignore=1)
 ```
 ```
-sudo make install
+make install
 ```
 ```
-sudo ldconfig
+ldconfig
 ```
 ```
 cd ../..
@@ -501,7 +501,7 @@ cd uicc-v3.2
 Please replace xxxxxxxx by 0c010955 </br>
 RQ : More information about parmeters of program_uicc please check this [github](https://github.com/SitrakaResearchAndPOC/fork_program_uicc) and [youtube](https://www.youtube.com/watch?v=nfTzATOZd_s)
 ```
-sudo ./program_uicc --adm xxxxxxxx --imsi 208920100001101 --isdn 00000001 --acc 0001 --key 6874736969202073796d4b2079650a73 --opc 504f20634f6320504f50206363500a4f -spn "OpenCells01" --authenticate 
+./program_uicc --adm xxxxxxxx --imsi 208920100001101 --isdn 00000001 --acc 0001 --key 6874736969202073796d4b2079650a73 --opc 504f20634f6320504f50206363500a4f -spn "OpenCells01" --authenticate 
 ```
 Configure the apn of phone as : OpenCells01
 ## Creating the configuration
@@ -589,7 +589,7 @@ docker exec -ti leonardobladerf bladeRF-cli -l hostedxA4-latest.rbf
 * On terminal 3
 (tape ctrl+shift+T before) 
 ```
-sudo cpupower frequency-set -g performance
+cpupower frequency-set -g performance
 ```
 ```
 docker exec -ti leonardobladerf ifconfig
