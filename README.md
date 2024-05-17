@@ -525,7 +525,7 @@ unzip srsran_config_bladerf.zip
 cp srsran/* /root/.config/srsran
 ```
 ```
-nano /root/.config/srsran/srsepc.conf
+nano /root/.config/srsran/epc.conf
 ```
 
 Change [pcap] enable by true
