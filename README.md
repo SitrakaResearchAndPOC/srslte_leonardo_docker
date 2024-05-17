@@ -225,22 +225,10 @@ or test
 ```
 bash srsepc_if_masq.sh
 ```
+```
+exit
+```
 
-## saving image (command on new terminal not on docker)
-Tape ctrl+shit+T
-```
-sudo su
-```
-```
-docker ps
-```
-find the id 
-```
-docker commit  <id> leonardousrp
-```
-```
-docker save leonardousrp > leonardousrp.tar.gz
-```
 # launching SRSLTE
 close all terminal and open new fresh one
 * On terminal 1
@@ -291,6 +279,22 @@ docker exec -ti leonardousrp wireshark
 # loading .tar.gz for others machine
 ```
 docker save > leonardousrp.tar.gz
+```
+
+## saving image (command on new terminal not on docker)
+Tape ctrl+shit+T
+```
+sudo su
+```
+```
+docker ps
+```
+find the id 
+```
+docker commit  <id> leonardousrp
+```
+```
+docker save leonardousrp > leonardousrp.tar.gz
 ```
 
 
