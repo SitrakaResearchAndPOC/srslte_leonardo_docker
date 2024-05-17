@@ -53,7 +53,7 @@ docker run -itd --privileged -v /dev/bus/usb:/dev/bus/usb -v /tmp/.X11-unix:/tmp
 docker restart leonardousrp
 ```
 ```
-apt-get install iptables
+apt install iptables
 ```
 ## installing srslte and sim programmer over ubuntu
 ```
