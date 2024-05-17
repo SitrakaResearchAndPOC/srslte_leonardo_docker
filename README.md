@@ -524,6 +524,10 @@ unzip srsran_config_bladerf.zip
 ```
 cp srsran/* /root/.config/srsran
 ```
+```
+nano /root/.config/srsran/srsepc.conf
+```
+
 Change [pcap] enable by true
 
 ## Concifugring srsepc_if_masq
