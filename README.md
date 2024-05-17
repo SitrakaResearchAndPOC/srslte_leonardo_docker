@@ -284,9 +284,9 @@ sudo su
 ```
 docker ps
 ```
-find the id 
+find the id and name of docker 
 ```
-docker commit  <id> leonardousrp
+docker commit  leonardousrp leonardousrp
 ```
 ```
 docker save leonardousrp > leonardousrp.tar.gz
@@ -622,9 +622,9 @@ sudo su
 ```
 docker ps
 ```
-find the id 
+find the id and name of docker
 ```
-docker commit  <id> leonardobladerf
+docker commit  leonardobladerf leonardobladerf
 ```
 ```
 docker save leonardobladerf > leonardobladerf.tar.gz
