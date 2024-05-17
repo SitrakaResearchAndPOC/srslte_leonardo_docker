@@ -260,7 +260,7 @@ docker exec -ti leonardousrp ifconfig
 ```
 Get the interface having internet as <if_internet>
 ```
-docker exec -ti leonardousrp  bash srsepc_if_masq.sh <internet>
+docker exec -ti leonardousrp  bash srsepc_if_masq.sh <if_internet>
 ```
 ```
 docker exec -ti leonardousrp ufw disable # don't wory if there is not ufw on your system
