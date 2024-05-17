@@ -370,16 +370,18 @@ docker run -itd --privileged -v /dev/bus/usb:/dev/bus/usb -v /tmp/.X11-unix:/tmp
 ```
 docker restart leonardobladerf
 ```
-```
-apt install nano wireshark
-```
-
-```
-apt install iptables
-```
 ## installing srslte and sim programmer over ubuntu
 ```
+xhost +
+```
+```
+docker exec -ti leonardobladerf bash
+```
+```
 apt update
+```
+```
+apt install net-tools zsh wireshark iptables nano inetutils-ping
 ```
 ```
 apt install build-essential cmake libfftw3-dev libmbedtls-dev libboost-program-options-dev libconfig++-dev libsctp-dev  
@@ -539,6 +541,9 @@ or test
 ```
 bash srsepc_if_masq.sh
 ```
+```
+exit
+```
 ## Getting firmeware for flashing bladerf
 ```
 wget https://www.nuand.com/fpga/hostedxA4-latest.rbf
@@ -547,25 +552,18 @@ wget https://www.nuand.com/fpga/hostedxA4-latest.rbf
 bladeRF-cli -l hostedxA4-latest.rbf
 ```
 
-## saving image (command on new terminal not on docker)
-Tape ctrl+shit+T
-```
-sudo su
-```
-```
-docker ps
-```
-find the id 
-```
-docker commit  <id> leonardobladerf
-```
-```
-docker save leonardobladerf > leonardobladerf.tar.gz
-```
 # launching SRSLTE
 close all terminal and open new fresh one 
 * On terminal 1
 Use cpupower mode 
+```
+cpupower frequency-set -g performance 
+```
+```
+docker exec -ti  leonardobladerf srsepc
+```
+* On terminal 2
+(tape ctrl+shift+T before)
 ```
 cpupower frequency-set -g performance 
 ```
@@ -578,14 +576,6 @@ Tape info
 info
 ```
 And Tape exit or ctrl-D
-```
-docker exec -ti  leonardobladerf srsepc
-```
-* On terminal 2
-(tape ctrl+shift+T before)
-```
-cpupower frequency-set -g performance 
-```
 ```
 docker exec -ti leonardobladerf bladeRF-cli -p
 ```
@@ -620,12 +610,33 @@ xhost +
 ```
 docker exec -ti leonardobladerf wireshark
 ```
-
-
-# loading .tar.gz for others machine
+## saving image (command on new terminal not on docker)
+Tape ctrl+shit+T
 ```
-docker save >  leonardobladerf.tar.gz
+sudo su
 ```
+```
+docker ps
+```
+find the id 
+```
+docker commit  <id> leonardobladerf
+```
+```
+docker save leonardobladerf > leonardobladerf.tar.gz
+```
+
+## LOAD AND RUN LEONARDO USRP
+```
+docker load < leonardobladerf.tar.gz 
+```
+```
+docker run -itd --privileged -v /dev/bus/usb:/dev/bus/usb -v /tmp/.X11-unix:/tmp/.X11-unix:ro -v $XAUTHORITY:/home/user/.Xauthority:ro --net=host --env="DISPLAY=$DISPLAY" --env="LC_ALL=C.UTF-8" --env="LANG=C.UTF-8"  --name leonardobladerf leonardobladerf 
+```
+```
+docker restart leonardobladerf
+```
+
 
 RQ : Error time burst </br>
 * The USB doesn't detect USB3.0 </br>
