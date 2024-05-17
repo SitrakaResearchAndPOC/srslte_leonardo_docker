@@ -506,10 +506,10 @@ RQ : More information about parmeters of program_uicc please check this [github]
 Configure the apn of phone as : OpenCells01
 ## Creating the configuration
 ```
-mkdir /root/.config
+mkdir -p /root/.config
 ```
 ```
-mkdir /root/.config/srsran
+mkdir -p /root/.config/srsran
 ```
 ```
 rm -rf /root/.config/srsran/*
