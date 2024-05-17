@@ -545,15 +545,15 @@ or test
 ```
 bash srsepc_if_masq.sh
 ```
-```
-exit
-```
 ## Getting firmeware for flashing bladerf
 ```
 wget https://www.nuand.com/fpga/hostedxA4-latest.rbf
 ```
 ```
 bladeRF-cli -l hostedxA4-latest.rbf
+```
+```
+exit
 ```
 
 # launching SRSLTE
