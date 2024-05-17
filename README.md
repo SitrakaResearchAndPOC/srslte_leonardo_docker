@@ -24,8 +24,9 @@ apt install net-tools
 ```
 apt install nano wireshark
 ```
-
-
+```
+apt install iptables
+```
 
 # INSTALLING WITH USRP
 ## installing docker and os ubuntu 20.04
@@ -51,9 +52,6 @@ docker run -itd --privileged -v /dev/bus/usb:/dev/bus/usb -v /tmp/.X11-unix:/tmp
 ```
 ```
 docker restart leonardousrp
-```
-```
-apt install iptables
 ```
 ## installing srslte and sim programmer over ubuntu
 ```
