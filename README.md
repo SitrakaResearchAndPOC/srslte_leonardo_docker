@@ -49,6 +49,9 @@ docker restart leonardousrp
 ```
 ## installing srslte and sim programmer over ubuntu
 ```
+xhost +
+```
+```
 docker exec -ti leonardousrp bash
 ```
 ```
