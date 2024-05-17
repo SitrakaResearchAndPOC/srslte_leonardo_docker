@@ -291,7 +291,7 @@ docker commit  <id> leonardousrp
 ```
 docker save leonardousrp > leonardousrp.tar.gz
 ```
-## LOAD AND LAUNCH LEONARDO USRP 
+## LOAD AND RUN LEONARDO USRP 
 ```
 docker load leonardousrp < leonardousrp.tar.gz
 ```
