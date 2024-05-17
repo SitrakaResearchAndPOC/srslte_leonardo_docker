@@ -187,10 +187,10 @@ sudo ./program_uicc --adm xxxxxxxx --imsi 208920100001101 --isdn 00000001 --acc 
 Configure the apn of phone as : OpenCells01
 ## Creating the configuration
 ```
-mkdir /root/.config
+mkdir -p /root/.config
 ```
 ```
-mkdir /root/.config/srsran
+mkdir -p /root/.config/srsran
 ```
 ```
 rm -rf /root/.config/srsran/*
